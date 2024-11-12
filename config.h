@@ -41,3 +41,6 @@
 #define RGB_MATRIX_DEFAULT_VAL RGB_MATRIX_MAXIMUM_BRIGHTNESS
 
 #endif //RGB_MATRIX_ENABLE
+
+#define RP2040_BOOTLOADER_DOUBLE_TAP_RESET // Activates the double-tap behavior
+#define RP2040_BOOTLOADER_DOUBLE_TAP_RESET_TIMEOUT 200U // Timeout window in ms in which the double tap can occur.
