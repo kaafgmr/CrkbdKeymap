@@ -33,7 +33,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT, ES_PIPE,   ES_AT, ES_HASH, ES_TILD, ES_EURO,                       ES_NOT, ES_LBRC, ES_LCBR, ES_RCBR, ES_RBRC, ES_CCED,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL, ES_LABK, ES_QUOT, XXXXXXX, XXXXXXX, XXXXXXX,                      ES_QUES, XXXXXXX, XXXXXXX, XXXXXXX, ES_PLUS, XXXXXXX,
+      KC_LCTL, ES_LABK, ES_QUOT, XXXXXXX, XXXXXXX, XXXXXXX,                      ES_QUES, ES_BSLS, XXXXXXX, XXXXXXX, ES_PLUS, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_LGUI,   MO(3),  KC_SPC,     KC_ENT, _______, KC_RALT
                                       //`--------------------------'  `--------------------------'
@@ -41,11 +41,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [3] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                        KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, RM_HUEU, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      RGB_TOG, RM_HUED, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_LGUI, _______,  KC_SPC,     KC_ENT, _______, KC_RALT
                                       //`--------------------------'  `--------------------------'
@@ -56,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 const char* get_current_layer(void)
 {
-	switch (get_highest_layer(layer_state)) 
+	switch (get_highest_layer(layer_state))
 	{
 		case 0:
 			return "QWERTY";
@@ -87,6 +87,7 @@ void oled_render_wpm(void)
 	oled_write_ln(get_u8_str(get_current_wpm(), ' '), false);
 }
 
+
 __attribute__((weak)) void oled_render_logo(void) {
     // clang-format off
     static const char PROGMEM crkbd_logo[] = {
@@ -101,11 +102,11 @@ __attribute__((weak)) void oled_render_logo(void) {
 bool oled_task_user(void)
 {
 	oled_set_cursor(0, 0);
-	if (is_keyboard_left()) 
+	if (is_keyboard_left())
 	{
 		oled_render_layer_state();
 		oled_render_wpm();
-	} else 
+	} else
 	{
 		oled_render_logo();
 	}
